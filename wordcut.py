@@ -11,7 +11,7 @@ import numpy as np
 
 def stopwordslist():
     stopwords = [line.strip() for line in open(r'./stopwords', encoding='utf8')]
-    return  stopwords
+    return stopwords
 
 
 def statOnxls(filename):
@@ -21,9 +21,9 @@ def statOnxls(filename):
 def textToCloud(filename):
     with open(filename, 'r') as f:
         s = f.read()
-    l = list(jieba.cut(s, cut_all=False))
+    l = (jieba.cut(s, cut_all=False))
     c = Counter(l)
-    print(c)
+    #print(c)
     cloudtext = ','.join(l)
     wc = WordCloud(
         background_color='white',  # 背景颜色
@@ -38,15 +38,17 @@ def textToCloud(filename):
 
 
 def text_to_bar(filename):
+    wordcut = []
     with open(filename, 'r') as f:
-        s = f.read()
-    l = list(jieba.cut(s))
-    c = Counter(l)
-    #c = sorted(c)
-    #index = np.array(c.values()[:5])
-    print(c)
-    #plt.bar(left=0,bottom=index , width=y, color='yellow',height=0.5, orientation='horizontal')
-    #plt.show()
+        for line in f:
+            l = jieba.cut(line)
+            wordcut += [item for item in l if item not in stopwordslist() and len(item) > 1]
+    c = Counter(wordcut)
+    c = dict(sorted(c.items(), key=lambda x:x[1], reverse=True)[:10])
+    print(c.keys())
+    plt.bar(x=0, bottom=range(10), width=list(c.values())[::-1], color='skyblue', height=0.5, orientation='horizontal')
+    plt.yticks(tuple(range(10)), tuple(list(c.keys())[::-1]))
+    plt.show()
 
 if __name__ == "__main__":
     '''
@@ -58,4 +60,5 @@ if __name__ == "__main__":
     plt.show()
     '''
     # show the word count bar
-    #text_to_bar(r'./test.txt')
+    text_to_bar(r'./test.txt')
+    #print(stopwordslist())
