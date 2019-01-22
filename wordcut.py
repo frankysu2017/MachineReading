@@ -6,6 +6,12 @@ from collections import Counter
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import xlrd, xlwt
+import numpy as np
+
+
+def stopwordslist():
+    stopwords = [line.strip() for line in open(r'./stopwords', encoding='utf8')]
+    return  stopwords
 
 
 def statOnxls(filename):
@@ -31,9 +37,25 @@ def textToCloud(filename):
     return wc
 
 
+def text_to_bar(filename):
+    with open(filename, 'r') as f:
+        s = f.read()
+    l = list(jieba.cut(s))
+    c = Counter(l)
+    #c = sorted(c)
+    #index = np.array(c.values()[:5])
+    print(c)
+    #plt.bar(left=0,bottom=index , width=y, color='yellow',height=0.5, orientation='horizontal')
+    #plt.show()
+
 if __name__ == "__main__":
+    '''
+    # show the word cloud
     wc = textToCloud(r'./test.txt')
     wc.to_file(r"./pic.png")
     plt.imshow(wc)
     plt.axis("off")
     plt.show()
+    '''
+    # show the word count bar
+    #text_to_bar(r'./test.txt')
