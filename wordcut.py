@@ -11,7 +11,7 @@ import operator
 jieba.load_userdict(r"./newdict")
 
 def stopwordslist():
-    stopwords = [line.strip() for line in open(r'./stopwords', encoding='gbk')]
+    stopwords = [line.strip() for line in open(r'./stopwords', encoding='utf8')]
     stopwords.append('\n')
     stopwords.append(' ')
     return stopwords
