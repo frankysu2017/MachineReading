@@ -67,8 +67,8 @@ if __name__ == "__main__":
     df['postdate'] = df['postdate'].apply(pdtime)
     df.to_excel(r'./test.xlsx', sheet_name=u'家长帮')
     '''
-    df = pd.read_excel(r'./test.xlsx').set_index('postdate')
 
+    df = pd.read_excel(r'./test.xlsx').set_index('postdate')
     df['yearmonth'] = df.index.year*100+df.index.month
     yearmonth = sorted(set(df['yearmonth']))
     grouped = df.groupby(df['yearmonth'])
