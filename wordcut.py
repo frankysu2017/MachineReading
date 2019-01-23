@@ -10,6 +10,7 @@ import numpy as np
 import operator
 jieba.load_userdict(r"./newdict")
 
+
 def stopwordslist():
     stopwords = [line.strip() for line in open(r'./stopwords', encoding='utf8')]
     stopwords.append('\n')
@@ -58,6 +59,7 @@ def text_to_bar(filename):
         plt.text(x+0.1, y, '%d'%x, ha='center', va='bottom', fontsize=10.5)
     plt.title('词频统计Top10')
     plt.show()
+
 
 if __name__ == "__main__":
     '''
