@@ -26,7 +26,7 @@ def textToCloud(filename):
     '''
     show the article in word cloud
     '''
-    with open(filename, 'r') as f:
+    with open(filename, 'r', encoding='utf8') as f:
         s = f.read()
     l = list(jieba.cut(s, cut_all=False))
     c = Counter(l)
