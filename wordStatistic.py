@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
@@ -22,5 +23,7 @@ def update(n):
     return ln,
 
 if __name__ == "__main__":
-    ani = FuncAnimation(fig, update, frames=np.linspace(0, 10*np.pi, 1000), init_func=init, interval=1, blit=True)    #这里的frames在调用update函数是会将frames作为实参传递给“n”
-    plt.show()
+    #ani = FuncAnimation(fig, update, frames=np.linspace(0, 10*np.pi, 1000), init_func=init, interval=1, blit=True)    #这里的frames在调用update函数是会将frames作为实参传递给“n”
+    #plt.show()
+    print(type(np.linspace(0, 10*np.pi, 1000)))
+
